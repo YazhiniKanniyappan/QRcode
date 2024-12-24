@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QRCode Generator</title>
     <style>
-        #qrcode{
+        #qrcode {
             margin: 40px auto;
             display: flex;
             flex-direction: column;
@@ -13,52 +13,50 @@
             justify-content: space-between;
             width: 250px;
             border: 1px dashed black;
-            height:150px ;
+            height: 150px;
             padding: 20px;
             background-color: azure;
         }
-        input{
+        input {
             width: 200px;
             border-radius: 3px;
-            border:1px solid black;
+            border: 1px solid black;
         }
-        body
-        {
+        body {
             background-color: rgb(243, 232, 218);
         }
-        h1{
+        h1 {
             text-align: center;
             margin: 0;
             padding-bottom: 10px;
             color: burlywood;
         }
-        #btn{
+        #btn {
             background-color: rgb(17, 151, 235);
             color: white;
             border-color: rgb(17, 151, 235);
             border-radius: 3px;
         }
-        #btn:hover{
+        #btn:hover {
             cursor: pointer;
             background-color: rgb(6, 132, 210);
         }
-        #hidden{
+        #hidden {
+            display: none;
             margin: 0 auto;
             width: 250px;
             border: 1px dashed black;
-            height:150px ;
+            height: 150px;
             padding: 20px;
             background-color: azure;
         }
-        #hid1{
+        #qrCodeContainer {
             display: none;
-
         }
-        #img{
+        #img {
             width: 100px;
-            height:100px;
-            margin:0 auto;
-            
+            height: 100px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -66,30 +64,30 @@
     <div id="qrcode">
          <h1>QR Code Generator</h1>
          <input id="url" type="text" required placeholder="Enter your URL">
-
          <button id="btn" onclick="generateQR()">Generate QRCode</button>
-         
     </div>
     <div id="hidden">
-        <div id="hid1">
-        <h1>Your QR Code</h1>
-        <p id="img"></p>
-    </div>
+        <div id="qrCodeContainer">
+            <h1>Your QR Code</h1>
+            <p id="img"></p>
+        </div>
     </div>
 </body>     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
     function generateQR(){
-   const url = document.getElementById("url").value;
-   const qrcode = document.getElementById("img");
-   qrcode.innerHTML="";
-   if(url === ""){
-    alert("kindly Enter the URL");
-   }
-   if(url !== ""){
-    new QRCode(qrcode, {text:url, width:100, height:100});
-    document.getElementById("hid1").style.display="block";}
-  
-}
+        const url = document.getElementById("url").value;
+        const qrcode = document.getElementById("img");
+        qrcode.innerHTML = "";
+        
+        if(url === "") {
+            alert("Kindly enter a valid URL");
+            return;
+        }
+        
+        new QRCode(qrcode, { text: url, width: 100, height: 100 });
+        document.getElementById("hidden").style.display = "block";
+        document.getElementById("qrCodeContainer").style.display = "block";
+    }
 </script>
 </html>
